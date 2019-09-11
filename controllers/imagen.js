@@ -4,9 +4,10 @@ const index = require("../index");
 
 async function get(request, response, next){
     try {
-        response.status(200).json({
+        response.status(200).end("recibiendo imagen");
+        /*response.status(200).json({
             gcode: index.cola.shift()
-        });
+        });*/
     } catch (error) {
         next(error);
     }
@@ -26,9 +27,9 @@ async function post(request, response, next){
                 dirImg: request.files.imagen.path
             }).on('log', (str) => {
                 if(str.includes("Sava As"))
-                    index.cola.push(fs.readFileSync('assets\\impresiones\\' + str.substring(str.lastIndexOf('\\') + 1, str.length), 'utf8'));
+                    //index.cola.push(fs.readFileSync('assets\\impresiones\\' + str.substring(str.lastIndexOf('\\') + 1, str.length), 'utf8'));
             });
-            response.status(200).end();
+            response.status(200).end("imagen subida");
     } catch (error) {
         next(error);
     }
