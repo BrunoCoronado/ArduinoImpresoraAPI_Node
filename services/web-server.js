@@ -11,8 +11,8 @@ let httpServer;
 
 function initialize(){
     return new Promise((resolve, reject) =>{
-        if (!fs.existsSync("assets/impresiones"))
-            fs.mkdirSync("assets/impresiones");
+        //if (!fs.existsSync("assets/impresiones"))
+            //fs.mkdirSync("assets/impresiones");
         const app = express();
         app.options('*', cors())
         app.use( (req, res, next) => { res.header("Access-Control-Allow-Origin", "*"); res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); next(); });
@@ -35,7 +35,7 @@ function initialize(){
 function close(){
     return new Promise((resolve, reject) => {
         httpServer.close(err =>{
-            rimraf.sync("assets/impresiones");
+            //rimraf.sync("assets/impresiones");
             if(err)
                 return reject(err);
             resolve();
